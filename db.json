@@ -1,0 +1,23 @@
+{
+  "tutors": [
+    {
+      "id": "1",
+      "name": "Анна Петрова",
+      "subject": "Математика",
+      "city": "Берлин",
+      "price": 25,
+      "description": "Подготовка к экзаменам",
+      "photo": "https://i.pravatar.cc/150?img=5"
+    },
+    {
+      "id": "8a04",
+      "name": "Julianna",
+      "subject": "Vf",
+      "city": "Pruszcz Gdański",
+      "price": "454",
+      "description": "svdbfb",
+      "photo": ""
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
