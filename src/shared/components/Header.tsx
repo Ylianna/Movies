@@ -12,6 +12,8 @@ export const Header = () => {
             <nav className={styles.menu}>
                 <a href={baseUrl}>Главная</a>
                 <a href={`${baseUrl}catalog`}>Каталог</a>
+                <a href={`${baseUrl}favorites`}>Избранное</a>
+                <a href={`${baseUrl}find`}>Поиск</a>
             </nav>
         </header>
     );
