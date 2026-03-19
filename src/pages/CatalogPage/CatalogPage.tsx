@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { getMovieById, getPopularMovies, searchMovies } from "../../features/tutors/api/movies";
 import type { Movie } from "../../features/tutors/types/Movie";
 import styles from "./CatalogPage.module.css";
 
 export const CatalogPage = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [query, setQuery] = useState("");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const initialQuery = searchParams.get("q") ?? "";
+    const [inputValue, setInputValue] = useState(initialQuery);
+    const [query, setQuery] = useState(initialQuery);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -19,13 +21,32 @@ export const CatalogPage = () => {
     const genreList = ["Все", "Боевик", "Фантастика", "Комедия", "Триллер", "Драма", "Мелодрама"];
 
     useEffect(() => {
+        const urlQuery = searchParams.get("q") ?? "";
+        setInputValue(urlQuery);
+        setQuery(urlQuery);
+        setPage(1);
+    }, [searchParams]);
+
+    useEffect(() => {
         const timer = setTimeout(() => {
-            setQuery(inputValue.trim());
+            const nextQuery = inputValue.trim();
+            setQuery(nextQuery);
             setPage(1);
+            const currentQuery = searchParams.get("q") ?? "";
+
+            if (nextQuery === currentQuery) {
+                return;
+            }
+
+            if (nextQuery) {
+                setSearchParams({ q: nextQuery }, { replace: true });
+            } else {
+                setSearchParams({}, { replace: true });
+            }
         }, 400);
 
         return () => clearTimeout(timer);
-    }, [inputValue]);
+    }, [inputValue, searchParams, setSearchParams]);
 
     useEffect(() => {
         let isCancelled = false;
