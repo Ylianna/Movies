@@ -1,5 +1,6 @@
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.svg";
+import { HeaderIcons } from "./HeaderIcons";
 
 export const Header = () => {
     const baseUrl = import.meta.env.BASE_URL;
@@ -14,6 +15,7 @@ export const Header = () => {
                 <a href={`${baseUrl}catalog`}>Каталог</a>
                 <a href={`${baseUrl}favorites`}>Избранное</a>
                 <a href={`${baseUrl}find`}>Поиск</a>
+                <HeaderIcons />
             </nav>
         </header>
     );
