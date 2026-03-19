@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { getMovieById, getPopularMovies, searchMovies } from "../../features/tutors/api/movies";
 import type { Movie } from "../../features/tutors/types/Movie";
 import styles from "./CatalogPage.module.css";
+import { getLocalizedMovieTitle } from "../../shared/utils/localizedMovieTitle";
 
 export const CatalogPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -196,12 +197,16 @@ export const CatalogPage = () => {
                     {filteredMovies.map((movie) => (
                         <Link key={movie.imdbID} to={`/movie/${movie.imdbID}`} className={styles.card}>
                             {movie.Poster && movie.Poster !== "N/A" ? (
-                                <img src={movie.Poster} alt={movie.Title} className={styles.poster} />
+                                <img
+                                    src={movie.Poster}
+                                    alt={getLocalizedMovieTitle(movie)}
+                                    className={styles.poster}
+                                />
                             ) : (
                                 <div className={styles.poster} />
                             )}
                             <div className={styles.meta}>
-                                <h3 className={styles.name}>{movie.Title}</h3>
+                                <h3 className={styles.name}>{getLocalizedMovieTitle(movie)}</h3>
                                 <p className={styles.sub}>
                                     {movie.imdbRating ? `★ ${movie.imdbRating} · ` : ""}
                                     {movie.Year}

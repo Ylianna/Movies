@@ -2,6 +2,7 @@ import { Info, Play } from "lucide-react";
 import type { Movie } from "../types/Movie";
 import styles from "./HeroMovieCard.module.css";
 import { useNavigate } from "react-router-dom";
+import { getLocalizedMovieTitle } from "../../../shared/utils/localizedMovieTitle";
 
 type HeroMovie = Movie & {
   Plot?: string;
@@ -32,13 +33,14 @@ export const HeroMovieCard = ({ movie }: Props) => {
   const hasPoster = movie.Poster && movie.Poster !== "N/A";
   const posterUrl = hasPoster ? getBetterPosterUrl(movie.Poster) : "";
   const bgStyle = hasPoster ? { backgroundImage: `url(${posterUrl})` } : undefined;
+  const title = getLocalizedMovieTitle(movie);
 
   return (
     <section className={styles.hero} style={bgStyle}>
       <div className={styles.overlay} />
 
       <div className={styles.content}>
-        <h1 className={styles.title}>{movie.Title}</h1>
+        <h1 className={styles.title}>{title}</h1>
 
         <p className={styles.meta}>
           {movie.imdbRating ? `★ ${movie.imdbRating}` : "★ -"} · {movie.Year}

@@ -4,6 +4,7 @@ import { ExternalLink, Play } from "lucide-react";
 import { getMovieById } from "../../features/tutors/api/movies";
 import type { Movie } from "../../features/tutors/types/Movie";
 import styles from "./MoviePage.module.css";
+import { getLocalizedMovieTitle } from "../../shared/utils/localizedMovieTitle";
 
 const getBetterPosterUrl = (posterUrl: string) => {
     return posterUrl.replace(/SX\d+/i, "SX1200").replace(/SY\d+/i, "SY1800");
@@ -70,14 +71,15 @@ export const MoviePage = () => {
     }
 
     const poster = movie.Poster && movie.Poster !== "N/A" ? getBetterPosterUrl(movie.Poster) : "";
+    const localizedTitle = getLocalizedMovieTitle(movie);
 
     return (
         <section className={styles.page}>
             <article className={styles.card}>
-                {poster ? <img src={poster} alt={movie.Title} className={styles.poster} /> : <div className={styles.poster} />}
+                {poster ? <img src={poster} alt={localizedTitle} className={styles.poster} /> : <div className={styles.poster} />}
 
                 <div className={styles.content}>
-                    <h1 className={styles.title}>{movie.Title}</h1>
+                    <h1 className={styles.title}>{localizedTitle}</h1>
                     <p className={styles.meta}>
                         {movie.imdbRating ? `★ ${movie.imdbRating} · ` : ""}
                         {movie.Year}
