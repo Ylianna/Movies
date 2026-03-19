@@ -15,8 +15,9 @@ export const Header = () => {
                 <a href={`${baseUrl}catalog`}>Каталог</a>
                 <a href={`${baseUrl}favorites`}>Избранное</a>
                 <a href={`${baseUrl}find`}>Поиск</a>
-                <HeaderIcons />
             </nav>
+
+            <HeaderIcons />
         </header>
     );
 };

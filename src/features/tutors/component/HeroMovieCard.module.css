@@ -1,0 +1,115 @@
+.hero {
+  position: relative;
+  min-height: 500px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #1a1a1a;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.84) 0%, rgba(0, 0, 0, 0.62) 44%, rgba(0, 0, 0, 0.3) 72%, rgba(0, 0, 0, 0.12) 100%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.04) 52%, rgba(0, 0, 0, 0.48) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  padding: 56px 40px;
+  color: #fff;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 64px;
+  line-height: 0.95;
+}
+
+.meta {
+  margin: 0 0 14px;
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.description {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 12px;
+}
+
+.watchBtn,
+.detailsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 14px 24px;
+  cursor: pointer;
+}
+
+.watchBtn {
+  color: #fff;
+  background: #d9252a;
+}
+
+.detailsBtn {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+}
+
+.placeholder {
+  border-radius: 18px;
+  min-height: 340px;
+  display: grid;
+  place-items: center;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 24px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 420px;
+  }
+
+  .content {
+    padding: 34px 20px;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 42px;
+  }
+
+  .meta {
+    font-size: 22px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .watchBtn,
+  .detailsBtn {
+    font-size: 20px;
+    padding: 12px 18px;
+  }
+}
