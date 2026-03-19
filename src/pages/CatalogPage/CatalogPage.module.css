@@ -27,7 +27,7 @@
 }
 
 .searchInput:focus {
-  border-color: #7f5af0;
+  border-color: #ff9a00;
 }
 
 .filtersRow {
@@ -55,9 +55,9 @@
 }
 
 .chipActive {
-  border-color: #7f5af0;
+  border-color: #ff9a00;
   color: #fff;
-  background: #2a2145;
+  background: #3a2a0f;
 }
 
 .controlGroup {
@@ -135,8 +135,8 @@
 }
 
 .pageActive {
-  border-color: #7f5af0;
-  background: #322257;
+  border-color: #ff9a00;
+  background: #3a2a0f;
 }
 
 .pageBtn:disabled {
