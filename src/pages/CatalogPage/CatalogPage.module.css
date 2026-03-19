@@ -83,6 +83,9 @@
 .card {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .poster {
@@ -95,6 +98,10 @@
 
 .meta {
   margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
 
 .name {
@@ -110,7 +117,7 @@
 }
 
 .favoriteBtn {
-  margin-top: 8px;
+  margin-top: auto;
   border: 1px solid #2b2f41;
   background: #1d2230;
   color: #fff;
