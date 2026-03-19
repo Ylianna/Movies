@@ -109,6 +109,22 @@
   font-size: 15px;
 }
 
+.favoriteBtn {
+  margin-top: 8px;
+  border: 1px solid #2b2f41;
+  background: #1d2230;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.favoriteBtnActive {
+  background: #ff9a00;
+  color: #111;
+}
+
 .loading,
 .empty {
   color: #d4d6de;

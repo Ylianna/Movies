@@ -5,6 +5,11 @@ import { getMovieById } from "../../features/tutors/api/movies";
 import type { Movie } from "../../features/tutors/types/Movie";
 import styles from "./MoviePage.module.css";
 import { getLocalizedMovieTitle } from "../../shared/utils/localizedMovieTitle";
+import {
+    isFavoriteMovie,
+    subscribeToFavorites,
+    toggleFavoriteMovie,
+} from "../../shared/api/favorites";
 
 const getBetterPosterUrl = (posterUrl: string) => {
     return posterUrl.replace(/SX\d+/i, "SX1200").replace(/SY\d+/i, "SY1800");
@@ -15,6 +20,7 @@ export const MoviePage = () => {
     const [movie, setMovie] = useState<Movie | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         let isCancelled = false;
@@ -53,6 +59,16 @@ export const MoviePage = () => {
             isCancelled = true;
         };
     }, [id]);
+
+    useEffect(() => {
+        if (!movie) {
+            return;
+        }
+        setIsFavorite(isFavoriteMovie(movie.imdbID));
+        return subscribeToFavorites(() => {
+            setIsFavorite(isFavoriteMovie(movie.imdbID));
+        });
+    }, [movie]);
 
     const youtubeTrailerUrl = useMemo(() => {
         if (!movie) {
@@ -120,6 +136,13 @@ export const MoviePage = () => {
                         <Link to="/catalog" className={styles.secondaryBtn}>
                             Назад в каталог
                         </Link>
+                        <button
+                            type="button"
+                            className={styles.secondaryBtn}
+                            onClick={() => setIsFavorite(toggleFavoriteMovie(movie))}
+                        >
+                            {isFavorite ? "Убрать из избранного" : "В избранное"}
+                        </button>
                     </div>
                 </div>
             </article>

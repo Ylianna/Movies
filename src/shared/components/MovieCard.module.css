@@ -1,0 +1,62 @@
+.card {
+  border: 1px solid #2a2e3e;
+  padding: 8px;
+  border-radius: 12px;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 360px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #232636;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.2em * 2);
+}
+
+.year {
+  margin: 0;
+  color: #c4c5cc;
+}
+
+.favBtn {
+  width: 100%;
+  border: 1px solid #2b2f41;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: auto;
+  background: #1d2230;
+  color: #fff;
+}
+
+.favBtnActive {
+  background: #ff9a00;
+  color: #111;
+}

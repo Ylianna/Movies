@@ -4,6 +4,11 @@ import { getMovieById, getPopularMovies, searchMovies } from "../../features/tut
 import type { Movie } from "../../features/tutors/types/Movie";
 import styles from "./CatalogPage.module.css";
 import { getLocalizedMovieTitle } from "../../shared/utils/localizedMovieTitle";
+import {
+    isFavoriteMovie,
+    subscribeToFavorites,
+    toggleFavoriteMovie,
+} from "../../shared/api/favorites";
 
 export const CatalogPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -135,6 +140,16 @@ export const CatalogPage = () => {
         return Array.from({ length: end - start + 1 }, (_, i) => start + i);
     }, [page, totalPages]);
 
+    const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
+
+    useEffect(() => {
+        const sync = () => {
+            setFavoriteIds(new Set(movies.filter((movie) => isFavoriteMovie(movie.imdbID)).map((movie) => movie.imdbID)));
+        };
+        sync();
+        return subscribeToFavorites(sync);
+    }, [movies]);
+
     return (
         <section className={styles.page}>
             <h1 className={styles.title}>Каталог фильмов</h1>
@@ -211,6 +226,16 @@ export const CatalogPage = () => {
                                     {movie.imdbRating ? `★ ${movie.imdbRating} · ` : ""}
                                     {movie.Year}
                                 </p>
+                                <button
+                                    type="button"
+                                    className={`${styles.favoriteBtn} ${favoriteIds.has(movie.imdbID) ? styles.favoriteBtnActive : ""}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        toggleFavoriteMovie(movie);
+                                    }}
+                                >
+                                    {favoriteIds.has(movie.imdbID) ? "В избранном" : "В избранное"}
+                                </button>
                             </div>
                         </Link>
                     ))}

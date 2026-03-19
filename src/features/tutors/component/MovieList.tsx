@@ -1,5 +1,6 @@
 import type { Movie } from "../types/Movie";
 import { MovieCard } from "../../../shared/components/MovieCard";
+import styles from "./MovieList.module.css";
 
 type Props = {
     movies: Movie[];
@@ -7,7 +8,7 @@ type Props = {
 
 export const MovieList = ({ movies }: Props) => {
     return (
-        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+        <div className={styles.grid}>
             {movies.map((movie) => (
                 <MovieCard key={movie.imdbID} movie={movie} />
             ))}
