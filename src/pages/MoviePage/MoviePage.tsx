@@ -5,6 +5,7 @@ import { getMovieById } from "../../features/tutors/api/movies";
 import type { Movie } from "../../features/tutors/types/Movie";
 import styles from "./MoviePage.module.css";
 import { getLocalizedMovieTitle } from "../../shared/utils/localizedMovieTitle";
+import { VideoPlayer } from "../../shared/components/VideoPlayer";
 import {
     isFavoriteMovie,
     subscribeToFavorites,
@@ -14,6 +15,8 @@ import {
 const getBetterPosterUrl = (posterUrl: string) => {
     return posterUrl.replace(/SX\d+/i, "SX1200").replace(/SY\d+/i, "SY1800");
 };
+
+const FALLBACK_HLS_URL = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 
 export const MoviePage = () => {
     const { id } = useParams();
@@ -88,6 +91,7 @@ export const MoviePage = () => {
 
     const poster = movie.Poster && movie.Poster !== "N/A" ? getBetterPosterUrl(movie.Poster) : "";
     const localizedTitle = getLocalizedMovieTitle(movie);
+    const playerUrl = import.meta.env.VITE_HLS_STREAM_URL || FALLBACK_HLS_URL;
 
     return (
         <section className={styles.page}>
@@ -146,6 +150,14 @@ export const MoviePage = () => {
                     </div>
                 </div>
             </article>
+
+            <section className={styles.playerSection}>
+                <h2 className={styles.playerTitle}>Плеер</h2>
+                <VideoPlayer src={playerUrl} poster={poster} />
+                <p className={styles.playerHint}>
+                    Сейчас подключен демо-поток. Укажи свой URL в <code>VITE_HLS_STREAM_URL</code> для реального фильма.
+                </p>
+            </section>
         </section>
     );
 };
