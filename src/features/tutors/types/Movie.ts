@@ -11,4 +11,11 @@ export type Movie = {
   Runtime?: string;
   Plot?: string;
   imdbVotes?: string;
+  Released?: string;
+  Director?: string;
+  Writer?: string;
+  Actors?: string;
+  Country?: string;
+  Language?: string;
+  Awards?: string;
 };

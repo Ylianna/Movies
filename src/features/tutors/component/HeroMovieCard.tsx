@@ -1,6 +1,7 @@
 import { Info, Play } from "lucide-react";
 import type { Movie } from "../types/Movie";
 import styles from "./HeroMovieCard.module.css";
+import { useNavigate } from "react-router-dom";
 
 type HeroMovie = Movie & {
   Plot?: string;
@@ -22,6 +23,8 @@ const getBetterPosterUrl = (posterUrl: string) => {
 };
 
 export const HeroMovieCard = ({ movie }: Props) => {
+  const navigate = useNavigate();
+
   if (!movie) {
     return <section className={styles.placeholder}>Загрузка фильма...</section>;
   }
@@ -47,11 +50,19 @@ export const HeroMovieCard = ({ movie }: Props) => {
         {movie.Plot && <p className={styles.description}>{movie.Plot}</p>}
 
         <div className={styles.actions}>
-          <button type="button" className={styles.watchBtn}>
+          <button
+            type="button"
+            className={styles.watchBtn}
+            onClick={() => navigate(`/movie/${movie.imdbID}`)}
+          >
             <Play size={20} />
             Смотреть
           </button>
-          <button type="button" className={styles.detailsBtn}>
+          <button
+            type="button"
+            className={styles.detailsBtn}
+            onClick={() => navigate(`/movie/${movie.imdbID}`)}
+          >
             <Info size={20} />
             Подробнее
           </button>
