@@ -7,4 +7,8 @@ export type Movie = {
 
   // Эти поля есть только у "детального" ответа по `?i=...`
   imdbRating?: string;
+  Genre?: string;
+  Runtime?: string;
+  Plot?: string;
+  imdbVotes?: string;
 };

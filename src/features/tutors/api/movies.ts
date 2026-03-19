@@ -1,8 +1,17 @@
 import { apiClient } from "../../../shared/api/apiClient";
 
-export const getPopularMovies = () => {
-  // В OMDb нет "popular", поэтому используем поиск по дефолтному запросу
-  return apiClient("?s=guardians&type=movie");
+type MovieSearchParams = {
+  query: string;
+  page?: number;
+};
+
+export const searchMovies = ({ query, page = 1 }: MovieSearchParams) => {
+  return apiClient(`?s=${encodeURIComponent(query)}&type=movie&page=${page}`);
+};
+
+export const getPopularMovies = (page = 1) => {
+  // В OMDb нет "popular", поэтому используем дефолтный популярный запрос.
+  return searchMovies({ query: "guardians", page });
 };
 
 export const getMovieById = (id: string) => {

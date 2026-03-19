@@ -1,0 +1,167 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 32px;
+  color: #fff;
+}
+
+.title {
+  margin: 0 0 18px;
+  font-size: 52px;
+  line-height: 1.05;
+}
+
+.searchWrap {
+  margin-bottom: 14px;
+}
+
+.searchInput {
+  width: 100%;
+  background: #1b1d2a;
+  border: 1px solid #25293a;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 14px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #7f5af0;
+}
+
+.filtersRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.genres {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  border: 1px solid #2a2d3b;
+  background: #1a1d2a;
+  color: #d7d8df;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.chipActive {
+  border-color: #7f5af0;
+  color: #fff;
+  background: #2a2145;
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.select {
+  border: 1px solid #2a2d3b;
+  background: #1a1d2a;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px 14px;
+}
+
+.card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #232636;
+}
+
+.meta {
+  margin-top: 8px;
+}
+
+.name {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.sub {
+  margin: 4px 0 0;
+  color: #c4c5cc;
+  font-size: 15px;
+}
+
+.loading,
+.empty {
+  color: #d4d6de;
+  font-size: 24px;
+  padding: 16px 0;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.pageBtn {
+  min-width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #2d3040;
+  background: #1b1e2b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.pageActive {
+  border-color: #7f5af0;
+  background: #322257;
+}
+
+.pageBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .title {
+    font-size: 40px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
