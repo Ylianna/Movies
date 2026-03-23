@@ -60,3 +60,18 @@
   background: #ff9a00;
   color: #111;
 }
+
+@media (max-width: 520px) {
+  .card {
+    height: auto;
+  }
+
+  .title {
+    font-size: 16px;
+    min-height: auto;
+  }
+
+  .link {
+    gap: 6px;
+  }
+}

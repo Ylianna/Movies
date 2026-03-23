@@ -126,3 +126,32 @@
     font-size: 34px;
   }
 }
+
+@media (max-width: 520px) {
+  .card {
+    padding: 14px;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .watchBtn,
+  .secondaryBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .playerTitle {
+    font-size: 22px;
+  }
+
+  .playerHint {
+    font-size: 13px;
+  }
+}

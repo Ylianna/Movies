@@ -188,3 +188,38 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+
+  .filtersRow {
+    gap: 10px;
+  }
+
+  .controlGroup {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .select {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .favoriteBtn {
+    width: 100%;
+  }
+}
