@@ -71,8 +71,7 @@ export const VideoPlayer = ({ src, poster }: Props) => {
             ref={videoRef}
             controls
             playsInline
-            poster={poster}
-            style={{ width: "100%", borderRadius: "14px", overflow: "hidden" }}
+            style={{ width: "100%", height: "500px", borderRadius: "14px", overflow: "hidden" }}
         />
     );
 };
