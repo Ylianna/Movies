@@ -155,7 +155,7 @@ export const MoviePage = () => {
                 <h2 className={styles.playerTitle}>Плеер</h2>
                 <VideoPlayer src={playerUrl} poster={poster} />
                 <p className={styles.playerHint}>
-                    Сейчас подключен демо-поток. Укажи свой URL в <code>VITE_HLS_STREAM_URL</code> для реального фильма.
+                    {/*Сейчас подключен демо-поток. Укажи свой URL в <code>VITE_HLS_STREAM_URL</code> для реального фильма.*/}
                 </p>
             </section>
         </section>
