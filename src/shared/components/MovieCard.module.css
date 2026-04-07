@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 360px;
   background: rgba(255, 255, 255, 0.02);
 }
 

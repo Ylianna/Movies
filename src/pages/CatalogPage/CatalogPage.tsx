@@ -23,8 +23,15 @@ export const CatalogPage = () => {
     const [selectedGenre, setSelectedGenre] = useState("Все");
     const [minRating, setMinRating] = useState(0);
     const [sortBy, setSortBy] = useState("popular");
+    const moods = ["Все", "Весёлое", "Грустное", "Напряжённое"];
+    const [selectedMood, setSelectedMood] = useState("Все");
 
-    const genreList = ["Все", "Боевик", "Фантастика", "Комедия", "Триллер", "Драма", "Мелодрама"];
+// Словарь ключевых слов для простого NLP-фильтра
+    const moodKeywords: Record<string, string[]> = {
+        "Весёлое": ["comedy", "animation"], // фильмы-комедии и мультфильмы
+        "Грустное": ["drama", "biography", "history"], // драматичные сюжеты
+        "Напряжённое": ["thriller", "action", "adventure"], // боевики, триллеры, приключения
+    };
 
     useEffect(() => {
         const urlQuery = searchParams.get("q") ?? "";
@@ -112,27 +119,51 @@ export const CatalogPage = () => {
         };
     }, [query, page]);
 
+    const genreMap: Record<string, string> = {
+        "Все": "",
+        "Боевик": "Action",
+        "Фантастика": "Fantasy",
+        "Комедия": "Comedy",
+        "Триллер": "Thriller",
+        "Драма": "Drama",
+        "Мелодрама": "Drama",
+        "Приключения": "Adventure",
+        "Анимация": "Animation",
+        "Биография": "Biography",
+        "История": "History",
+    };
+
+    const genreList = Object.keys(genreMap);
+
     const filteredMovies = useMemo(() => {
-        const filtered = movies.filter((movie) => {
-            const genreMatch =
-                selectedGenre === "Все" ||
-                (movie.Genre ? movie.Genre.toLowerCase().includes(selectedGenre.toLowerCase()) : false);
+        const targetGenre = genreMap[selectedGenre] || ""; // просто selectedGenre без toLowerCase
 
-            const rating = Number(movie.imdbRating || 0);
-            const ratingMatch = rating >= minRating;
+        return movies
+            .filter((movie) => {
+                if (!targetGenre) return true; // "Все"
+                if (!movie.Genre) return false;
 
-            return genreMatch && ratingMatch;
-        });
+                const genres = movie.Genre.split(", ").map((g) => g.trim());
+                return genres.includes(targetGenre);
+            })
+            .filter((movie) => {
+                const rating = Number(movie.imdbRating || 0);
+                return rating >= minRating;
+            })
+            .filter((movie) => {
+                if (selectedMood === "Все") return true;
+                if (!movie.Genre) return false;
 
-        if (sortBy === "rating") {
-            return [...filtered].sort((a, b) => Number(b.imdbRating || 0) - Number(a.imdbRating || 0));
-        }
-        if (sortBy === "year") {
-            return [...filtered].sort((a, b) => Number(b.Year || 0) - Number(a.Year || 0));
-        }
-
-        return filtered;
-    }, [movies, selectedGenre, minRating, sortBy]);
+                const plotOrGenre = (movie.Genre + " " + (movie.Plot || "")).toLowerCase();
+                const keywords = moodKeywords[selectedMood] || [];
+                return keywords.some((word) => plotOrGenre.includes(word.toLowerCase()));
+            })
+            .sort((a, b) => {
+                if (sortBy === "rating") return Number(b.imdbRating || 0) - Number(a.imdbRating || 0);
+                if (sortBy === "year") return Number(b.Year || 0) - Number(a.Year || 0);
+                return 0;
+            });
+    }, [movies, selectedGenre, minRating, sortBy, selectedMood]);
 
     const pageNumbers = useMemo(() => {
         const start = Math.max(1, page - 2);
@@ -164,6 +195,18 @@ export const CatalogPage = () => {
             </div>
 
             <div className={styles.filtersRow}>
+                <div className={styles.moodFilters}>
+                    {moods.map((mood) => (
+                        <button
+                            key={mood}
+                            type="button"
+                            className={`${styles.chip} ${selectedMood === mood ? styles.chipActive : ""}`}
+                            onClick={() => setSelectedMood(mood)}
+                        >
+                            {mood}
+                        </button>
+                    ))}
+                </div>
                 <div className={styles.genres}>
                     {genreList.map((genre) => (
                         <button
