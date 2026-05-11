@@ -24,7 +24,7 @@ const normalizeVideoSrc = (src: string) => {
     return `${cleanBase}${cleanSrc}`;
 };
 
-export const VideoPlayer = ({ src, poster }: Props) => {
+export const VideoPlayer = ({ src }: Props) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
