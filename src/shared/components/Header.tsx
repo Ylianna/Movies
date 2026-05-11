@@ -48,7 +48,7 @@ export const Header = () => {
                         </button>
                     </form>
                 )}
-                <HeaderIcons onSearchClick={() => setIsSearchOpen((open) => !open)} />
+                <HeaderIcons onSearchClick={() => setIsSearchOpen((open) => !open)} onUserClick={() => navigate("/login")} />
             </div>
         </header>
     );

@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.emailText {
+  color: white;
+}
+
 .iconBtn {
   width: 36px;
   height: 36px;
